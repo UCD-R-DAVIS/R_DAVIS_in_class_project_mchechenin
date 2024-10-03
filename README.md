@@ -1,3 +1,3 @@
 Mark Chechenin
 He/They
-Environmental Economics, EPM
+Environmental Economics, EPM Student
