@@ -31,3 +31,13 @@ summarize(average_spm = mean(steps_per_minute)) %>%
 pivot_wider(names_from = "form", values_from =  "minutes_per_mile") %>%
 arrange(Control)
 
+running %>%
+mutate(months=ifelse(month%in% 1:6, "early 2024", "late 2024")) %>%
+group_by(months) %>%
+summarize(
+minimum_steps_per_minute = min(steps_per_minute),
+median_steps_per_minute = median(steps_per_minute),
+mean_steps_per_minute = mean(steps_per_minute),
+maximum_steps_per_minute = max(steps_per_minute))
+
+
