@@ -45,4 +45,4 @@ ggplot(running, aes(x = minutes_per_mile, y = steps_per_minute, color = time_per
     x = "Speed (miles per minute)",
     y = "Steps Per Minute (SPM)",
     color = "Running Pace") +
-  theme_minimal() 
+  theme_minimal()
