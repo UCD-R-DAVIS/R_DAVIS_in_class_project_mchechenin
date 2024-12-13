@@ -27,22 +27,32 @@ running <- data %>%
 library(lubridate) 
                               
 running <- running %>% 
-  mutate(datetime = ymd(paste(year, month, day, sep = "-")) 
+           mutate(datetime = ymd(paste(year, month, day, sep = "-"))) %>%
+           mutate(
+             time_period = case_when(
+               datetime <= ymd("2023-12-31") ~ "Pre-2024",
+               datetime >= ymd("2024-01-01") & datetime <= ymd("2024-06-30") ~ "Rehab",
+               datetime >= ymd("2024-07-01") ~ "Current Activity"))
                                                             
-grouped_by_period <- running %>% 
-  mutate(time_period = case_when(
-  datetime <= ymd("2023-12-31") ~ "pre-2024", 
-  datetime >= ymd("2024-01-01") & datetime <= ymd("2024-06-30") ~ "rehab", 
-  datetime >= ymd("2024-07-01") ~ "current activity" ) )
+#grouped_by_period <- running %>% 
+  #mutate(time_period = case_when(
+  #datetime <= ymd("2023-12-31") ~ "pre-2024", 
+  #datetime >= ymd("2024-01-01") & datetime <= ymd("2024-06-30") ~ "rehab", 
+  #datetime >= ymd("2024-07-01") ~ "current activity"))
 
-##Question 5
+##Question 5, 6, and 7
 
 ggplot(running, aes(x = minutes_per_mile, y = steps_per_minute, color = time_period)) +
   geom_point(alpha = 0.6) +
-  geom_smooth(method = "lm", se = FALSE) +
+  geom_smooth(method = "lm") +
   labs(
     title = "Relationship between SPM and Speed",
     x = "Speed (miles per minute)",
     y = "Steps Per Minute (SPM)",
     color = "Running Pace") +
-  theme_minimal()
+  theme_bw()
+
+#Color added + Theme + Legend + Labels + Point Transparency
+
+
+
